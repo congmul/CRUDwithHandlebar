@@ -1,0 +1,21 @@
+.container{
+    padding:10%;
+}
+
+.inputBox{
+    border: solid 1px rgb(192, 192, 192);
+    border-radius: 5px;
+    margin: auto;
+    width: 50%;
+    padding: 10px 20px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#dotoInput{
+    float: left;
+    margin-right: 5%;
+    max-width: 65%;
+}
