@@ -3,8 +3,6 @@
 }
 
 .inputBox{
-    border: solid 1px rgb(192, 192, 192);
-    border-radius: 5px;
     margin: auto;
     width: 100%;
     padding: 10px 20px;
@@ -15,4 +13,15 @@
     float: left;
     margin-right: 5%;
     max-width: 65%;
+}
+
+/* Same as the below SELECTOR
+ .list-group-item button.delete,
+.list-group-item button.complete  */
+
+.list-group-item > button.delete,
+.list-group-item > button.complete {
+  float: right;
+  height: 30px;
+  margin-left: 5px;
 }
