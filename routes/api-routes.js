@@ -6,4 +6,12 @@ module.exports = function(app){
             res.json(dbTodo);
         })
     });
+
+    app.post("/api/todos", (req, res) => {
+        console.log(req.body);
+        db.todo.create(req.body).then((dbTodo) => {
+            res.json(dbTodo);
+        });
+
+    })
 }

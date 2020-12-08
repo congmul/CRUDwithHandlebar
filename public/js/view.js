@@ -1,5 +1,8 @@
 $(document).ready(function () {
     const $todoContainer = $(".todo-container");
+    let $newItemInput = $("#dotoInput");
+
+    $(document).on("submit", "#todo-form", insertTodo);
 
     // Our initial todos array
     let todos = [];
@@ -50,6 +53,19 @@ $(document).ready(function () {
         return $newInputRow;
     }
 
+
+
+    function insertTodo(e){
+        e.preventDefault();
+        console.log($newItemInput.val());
+        const todo = {
+            text: $newItemInput.val().trim(),
+            complete: false
+        };
+
+        $.post("api/todos", todo, getTodos);
+        $newItemInput.val("");
+    }
 
 });
 
