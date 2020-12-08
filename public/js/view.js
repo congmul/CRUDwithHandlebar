@@ -3,6 +3,7 @@ $(document).ready(function () {
     let $newItemInput = $("#dotoInput");
 
     $(document).on("submit", "#todo-form", insertTodo);
+    $(document).on("click", "button.delete", deleteTodo);
 
     // Our initial todos array
     let todos = [];
@@ -56,7 +57,7 @@ $(document).ready(function () {
 
 
     function insertTodo(e){
-        e.preventDefault();
+        e.preventDefault(); // Prevents the default Action.
         console.log($newItemInput.val());
         const todo = {
             text: $newItemInput.val().trim(),
@@ -65,6 +66,18 @@ $(document).ready(function () {
 
         $.post("api/todos", todo, getTodos);
         $newItemInput.val("");
+    }
+
+    function deleteTodo(e) {
+        e.stopPropagation(); // Stop events from bubbling up the event chain.
+        
+        const id = $(this).data("id");
+        console.log(id);
+        $.ajax({
+            method: "DELETE",
+            url: "/api/todos/" + id
+        }).then(getTodos);
+
     }
 
 });
