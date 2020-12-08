@@ -11,12 +11,16 @@ module.exports = function(sequelize, DataTypes) {
     const Todo = sequelize.define("todo", {
         text: {
             type: DataTypes.STRING,
+            // allowNull: false,
             validate: {
-                // notNull: true
+                // notNull: {msg: "Please enter somthing"},
                 len: [1, 140]
             }
         },
-        complete: DataTypes.BOOLEAN
+        complete: {
+            type : DataTypes.BOOLEAN,
+            // defaultValue: true
+        }
     });
 
     return Todo;
