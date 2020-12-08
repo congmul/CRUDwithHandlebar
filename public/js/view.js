@@ -4,6 +4,7 @@ $(document).ready(function () {
 
     $(document).on("submit", "#todo-form", insertTodo);
     $(document).on("click", "button.delete", deleteTodo);
+    $(document).on("click", "button.complete", toggleComplete);
 
     // Our initial todos array
     let todos = [];
@@ -79,6 +80,24 @@ $(document).ready(function () {
         }).then(getTodos);
 
     }
+
+     // Toggles complete status
+  function toggleComplete(e) {
+    e.stopPropagation();
+    const todo = $(this).parent().data("todo");
+    console.log(todo);
+    todo.complete = !todo.complete;
+    updateTodo(todo);
+  }
+
+   // This function updates a todo in our database
+   function updateTodo(todo) {
+    $.ajax({
+      method: "PUT",
+      url: "/api/todos",
+      data: todo
+    }).then(getTodos);
+  }
 
 });
 

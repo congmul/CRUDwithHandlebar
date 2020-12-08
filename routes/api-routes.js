@@ -21,9 +21,23 @@ module.exports = function(app){
             where: {
                 id: req.params.id
             }
-        }).then((dbTodo) => {
-            console.log(dbTodo);
-            res.json(dbTodo);
+        }).then((result) => {
+            res.json(result);
         })
+    })
+
+    app.put("/api/todos", (req, res) => {
+       console.log(req.body);
+       db.todo.update({
+            complete: req.body.complete
+       },
+       {
+           where: {
+               id: req.body.id
+           }
+       }
+       ).then((result) => {
+           res.json(result);
+       })
     })
 }
